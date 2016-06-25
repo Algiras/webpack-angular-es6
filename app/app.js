@@ -1,6 +1,10 @@
-import 'jquery';
 import angular from 'angular';
-import 'angular-ui-router';
-import 'angular-material';
 
-angular.module('App', ['ui.router', 'ngMaterial']);
+import config from 'app.config';
+import routeConfig from 'app.routes';
+
+import mainModule from 'components/main/main';
+
+angular.module('App', ['ui.router', 'ngMaterial', mainModule])
+    .config(config)
+    .config(routeConfig);

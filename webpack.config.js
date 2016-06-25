@@ -1,5 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+/*global __dirname*/
+
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './app/app.js',
@@ -23,7 +25,7 @@ module.exports = {
             },
             {
                 test: /.html$/,
-                loader: 'ngtemplate?relativeTo=' + __dirname +'/app!html?root=' + __dirname + '/app'
+                loader: 'ngtemplate?relativeTo=' + __dirname + '/app!html?root=' + __dirname + '/app'
             },
             {
                 test: /\.scss$/,
@@ -37,7 +39,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({ minimize: true, output: { comments: false }}),
+        // new webpack.optimize.UglifyJsPlugin({ minimize: true, output: { comments: false }}),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
@@ -52,7 +54,8 @@ module.exports = {
         failOnError: true
     },
     sassLoader: {
-        includePaths: [path.resolve(__dirname, "./app")]
+        includePaths: [path.resolve(__dirname, './app')]
     },
-    devtool: '#source-map'
+    debug: true,
+    devtool: '#cheap-module-eval-source-map'
 };
